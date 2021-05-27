@@ -165,9 +165,9 @@ private:
 };
 
 template <typename A, typename B>
-class Node_1i_1o : public Node {
+class Function1i : public Node {
 public:
-    Node_1i_1o(B (*f)(A a)) : f(f) { inputs.insert(&in); }
+    Function1i(B (*f)(A a)) : f(f) { inputs.insert(&in); }
 
     Input<A> in;
     Output<B> out;
@@ -183,9 +183,9 @@ private:
 };
 
 template <typename A, typename B, typename C>
-class Node_2i_1o : public Node {
+class Function2i : public Node {
 public:
-    Node_2i_1o(C (*f)(A a, B b)) : f(f) { inputs.insert(&in0); inputs.insert(&in1); }
+    Function2i(C (*f)(A a, B b)) : f(f) { inputs.insert(&in0); inputs.insert(&in1); }
 
     Input<A> in0;
     Input<B> in1;

@@ -8,11 +8,11 @@ int main(int argc, char *argv[])
         return (i++) % 10;
     });
 
-    auto sum = Node_2i_1o<int, int, int>([](int a, int b) {
+    auto sum = Function2i<int, int, int>([](int a, int b) {
          return a + b; 
     });
 
-    auto square = Node_1i_1o<int, int>([](int a) {
+    auto square = Function1i<int, int>([](int a) {
         return a*a;
     });
 
