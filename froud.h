@@ -153,6 +153,7 @@ private:
 template <typename T>
 class Sink : public Node {
 public:
+    #warning find a better way to register inputs
     Sink(void (*f)(T)) : f(f) { inputs.insert(&in); }
     Input<T> in;
 
@@ -163,6 +164,23 @@ private:
     }
 };
 
+template <typename A, typename B>
+class Node_1i_1o : public Node {
+public:
+    Node_1i_1o(B (*f)(A a)) : f(f) { inputs.insert(&in); }
+
+    Input<A> in;
+    Output<B> out;
+
+protected:
+
+    B (*f)(A a);
+
+private:
+    void process() override {
+        out.put(f(in.get()));
+    }
+};
 
 template <typename A, typename B, typename C>
 class Node_2i_1o : public Node {
