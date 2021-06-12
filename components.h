@@ -72,7 +72,7 @@ private:
 };
 
 template <typename T>
-class Constant {
+class Constant : public Node {
 public:
     Constant(T c) : c(c) { }
     Output<T> out;
