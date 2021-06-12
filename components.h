@@ -106,7 +106,7 @@ public:
     Input<T1> in;
     Output<T2> out;
 private:
-    bool isFireable() overide { return in.isFull(); }
+    bool isFireable() override { return in.isFull(); }
     void process() override {
         out.put((T2)in.get());
     }
