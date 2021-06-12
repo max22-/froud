@@ -86,4 +86,30 @@ private:
     void process() override { out.put(Bang()); }
 };
 
+class Toggle : public Node {
+public:
+    Input<Bang> in;
+    Output<bool> out;
+private:
+    bool isFireable() override { return in.isFull(); }
+    void process() override { 
+        state = !state;
+        out.put(state);
+    }
+
+    bool state = false;
+};
+
+template <typename T1, typename T2>
+class Cast : public Node {
+public:
+    Input<T1> in;
+    Output<T2> out;
+private:
+    bool isFireable() overide { return in.isFull(); }
+    void process() override {
+        out.put((T2)in.get());
+    }
+};
+
 #endif
