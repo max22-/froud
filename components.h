@@ -72,11 +72,17 @@ private:
 };
 
 template <typename T>
-Generator<T> Constant(T c) {
-    return Generator<T>([c]() {
-        return c;
-    });
-}
+class Constant {
+public:
+    Constant(T c) : c(c) { }
+    Output<T> out;
+private:
+    void isFireable() override { return true; }
+    void process() override() {
+        out.put(c);
+    }
+    const T c;
+};
 
 class Clock : public Node {
 public:
