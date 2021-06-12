@@ -1,9 +1,14 @@
 #include <iostream>
-#include "froud.h"
+#include "froud/froud.h"
+#include "froud/components.h"
 
 int main(int argc, char *argv[])
 {
-    auto source = Source<int>([]() {
+    Circuit circuit;
+
+    auto clock = Clock();
+
+    auto generator = Generator<int>([]() {
         static int i = 0;
         return (i++) % 10;
     });
@@ -20,13 +25,16 @@ int main(int argc, char *argv[])
         std::cout << i << std::endl;
     });
 
-    sum.in0 = source.out;
-    square.in = source.out;
+    generator.in = clock.out;
+    sum.in0 = generator.out;
+    square.in = generator.out;
     sum.in1 = square.out;
     sink.in = sum.out;
+
+    circuit.registerNodes({&clock, &generator, &sum, &square, &sink});
     
     for(int i = 0; i < 20; i++)
-        Circuit::instance().tick();
+        circuit.tick();
 
     return 0;
 }

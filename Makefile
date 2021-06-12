@@ -1,17 +1,15 @@
-all: froud
-froud: froud.o main.o
-	g++ froud.o main.o -o froud
+EXE = froud-test
+all: $(EXE)
+$(EXE): main.o
+	g++ main.o -o $(EXE)
 
-main.o: main.cpp froud.h
+main.o: main.cpp
 	g++ main.cpp -c -o main.o
-
-froud.o: froud.cpp froud.h
-	g++ froud.cpp -c -o froud.o
 
 .PHONY: run clean
 
-run: froud
-	./froud
+run: $(EXE)
+	./$(EXE)
 
 clean:
-	rm -f *.o froud
+	rm -f *.o $(EXE)
