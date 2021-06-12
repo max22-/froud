@@ -28,7 +28,7 @@ public:
     Input<uint8_t> pin;
     Output<uint8_t> out;
 private:
-    bool isFireable() override { return pin.isFull() && val.isFull(); }
+    bool isFireable() override { return pin.isFull(); }
     void process() { out.put(digitalRead(pin.get())); }
 };
 
@@ -38,7 +38,7 @@ public:
     Output<Bang> out;
 private:
     unsigned long tStart = millis();
-    bool isFireable() { return true }
+    bool isFireable() { return true; }
     void process() {
         if(millis() - tStart > period) {
             tStart = millis();
