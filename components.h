@@ -78,7 +78,7 @@ public:
     Output<T> out;
 private:
     void isFireable() override { return true; }
-    void process() override() {
+    void process() override {
         out.put(c);
     }
     const T c;
