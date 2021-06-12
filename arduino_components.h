@@ -33,9 +33,9 @@ private:
 };
 
 class Every : public Node {
-    Output<Bang> out;
 public:
     Every(unsigned long period) : period(period) { }
+    Output<Bang> out;
 private:
     unsigned long tStart = millis();
     bool isFireable() { return true }
