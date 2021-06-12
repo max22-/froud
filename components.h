@@ -77,7 +77,7 @@ public:
     Constant(T c) : c(c) { }
     Output<T> out;
 private:
-    void isFireable() override { return true; }
+    bool isFireable() override { return true; }
     void process() override {
         out.put(c);
     }
