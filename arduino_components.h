@@ -32,6 +32,22 @@ private:
     void process() { out.put(digitalRead(pin.get()) };
 };
 
+class Every : public Node {
+    Output<Bang> out;
+public:
+    Every(unsigned long period) : period(period) { }
+private:
+    unsigned long tStart = millis();
+    bool isFireable() { return true }
+    void process() {
+        if(millis() - tStart > period) {
+            tStart = millis();
+            out.put(Bang());
+        }
+    }
+    unsigned long period;
+}
+
 
 #endif
 

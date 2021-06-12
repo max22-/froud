@@ -1,6 +1,6 @@
 #include <iostream>
-#include "froud/froud.h"
-#include "froud/components.h"
+#include "froud.h"
+#include "components.h"
 
 int main(int argc, char *argv[])
 {
