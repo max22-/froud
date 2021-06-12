@@ -98,7 +98,8 @@ public:
     Output<bool> out;
 private:
     bool isFireable() override { return in.isFull(); }
-    void process() override { 
+    void process() override {
+        in.get();   // important to consume the bang : if not, the node is always fireable.
         state = !state;
         out.put(state);
     }
