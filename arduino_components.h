@@ -11,7 +11,7 @@ public:
     Input<uint8_t> mode;
 private:
     bool isFireable() override { return pin.isFull() && mode.isFull(); }
-    void process() { pinMode(pin.get(), mode.get() };
+    void process() { pinMode(pin.get(), mode.get()) }
 };
 
 class DigitalWrite : public Node {
@@ -20,7 +20,7 @@ public:
     Input<uint8_t> val;
 private:
     bool isFireable() override { return pin.isFull() && val.isFull(); }
-    void process() { digitalWrite(pin.get(), val.get() };
+    void process() { digitalWrite(pin.get(), val.get()) }
 };
 
 class DigitalRead : public Node {
@@ -29,7 +29,7 @@ public:
     Output<uint8_t> out;
 private:
     bool isFireable() override { return pin.isFull() && val.isFull(); }
-    void process() { out.put(digitalRead(pin.get()) };
+    void process() { out.put(digitalRead(pin.get())) };
 };
 
 class Every : public Node {
