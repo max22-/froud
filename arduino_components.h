@@ -46,7 +46,7 @@ private:
         }
     }
     unsigned long period;
-}
+};
 
 
 #endif
